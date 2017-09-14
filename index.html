@@ -221,7 +221,7 @@
 	});
 
 	$("form").submit(function(x){
-		// x.preventDefault();
+		x.preventDefault();
 		if(regex.test($("input").val())) {
 			$.ajax({
 			        url: "//formspree.io/dynamicrealities@gmail.com", 
@@ -229,9 +229,9 @@
 			        data: {message: "hello!"},
 			        dataType: "json"
 			    });
-			$(".cta span").text("Thank you!");
-			$(".cta").removeClass("active").addClass("sent");
-			$(".visible-input").addClass("fadeOut");
+			// $(".cta span").text("Thank you!");
+			// $(".cta").removeClass("active").addClass("sent");
+			// $(".visible-input").addClass("fadeOut");
 		}
 	});
 </script>
