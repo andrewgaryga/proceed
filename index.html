@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Proceed</title>
+	<title>Purchase</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -77,6 +77,33 @@
 		  margin: 0 0 0 25px;
 		  outline: none;
 		  color: #32a271;
+		}
+		.cta .visible-input {
+			/*-webkit-box-flex: 3;
+			    -ms-flex: 3;
+			        flex: 3;*/
+			/*display: block;*/
+			text-align: left;
+			position: absolute;
+			top: calc(50% + 70px);
+			left: 50%;
+			-webkit-transform: translateY(-50%) translateX(-50%);
+			-ms-transform: translateY(-50%) translateX(-50%);
+			transform: translateY(-50%) translateX(-50%);
+			/*Animation*/
+			-webkit-transition: opacity .2s ease-in-out;
+			transition: opacity .2s ease-in-out;
+		}
+		.cta .visible-input input{
+			border: 0;
+			width: 315px;
+			height: 45px;
+			padding: 0 10px 0 25px;
+			outline: none;
+			color: #32a271;
+		}
+		.fadeOut {
+			opacity: 0;
 		}
 		.cta .button {
 		  display: none;
@@ -160,13 +187,18 @@
 <div class='centerMe'>
 	<div class='cta'>
 		<span>Proceed</span>
-		<form>
+		<form action="https://formspree.io/renderpipe@gmail.com"
+      method="POST">
 			<div class='input'>
-				<input placeholder='E-mail'>
+				<input type="email" name="_replyto" placeholder='E-mail'>
 			</div>
 			<div class='button'>
-				<button disabled='disabled' type='submit'>Send</button>
+				<button disabled='disabled' type="submit" value="Send">Send</button>
 			</div>
+			<div class="visible-input">
+				<input type="text" name="Message" placeholder='Message'>
+			</div>
+			<input type="hidden" name="_next" value="" />
 		</form>
 	</div>
 </div>
@@ -192,6 +224,7 @@
 		if(regex.test($("input").val())) {
 			$(".cta span").text("Thank you!");
 			$(".cta").removeClass("active").addClass("sent");
+			$(".visible-input").addClass("fadeOut");
 		}
 	});
 </script>
