@@ -219,7 +219,14 @@
 			$("button").attr("disabled", "disabled"); }
 	});
 
-
+	$("form").submit(function(x){
+		x.preventDefault();
+		if(regex.test($("input").val())) {
+			$(".cta span").text("Thank you!");
+			$(".cta").removeClass("active").addClass("sent");
+			$(".visible-input").addClass("fadeOut");
+		}
+	});
 </script>
 
 </body>
