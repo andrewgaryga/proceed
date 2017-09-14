@@ -191,13 +191,13 @@
       method="POST"> -->
   		<form method="POST">
 			<div class='input'>
-				<input type="email" name="_replyto" placeholder='E-mail'>
+				<input id="email" type="email" name="_replyto" placeholder='E-mail'>
 			</div>
 			<div class='button'>
 				<button disabled='disabled' type="submit" value="Send">Send</button>
 			</div>
 			<div class="visible-input">
-				<input type="text" name="Message" placeholder='Message'>
+				<input id="comments" type="text" name="Message" placeholder='Message'>
 			</div>
 			<input type="hidden" name="_next" value="" />
 		</form>
@@ -220,20 +220,57 @@
 			$("button").attr("disabled", "disabled"); }
 	});
 
-	$("form").submit(function(x){
-		x.preventDefault();
-		if(regex.test($("input").val())) {
-			$.ajax({
-			        url: "//formspree.io/dynamicrealities@gmail.com", 
-			        method: "POST",
-			        data: {message: "hello!"},
-			        dataType: "json"
-			    });
-			// $(".cta span").text("Thank you!");
-			// $(".cta").removeClass("active").addClass("sent");
-			// $(".visible-input").addClass("fadeOut");
-		}
-	});
+	// $("form").submit(function(x){
+	// 	x.preventDefault();
+	// 	if(regex.test($("input").val())) {
+	// 		$.ajax({
+	// 		        url: "//formspree.io/dynamicrealities@gmail.com", 
+	// 		        method: "POST",
+	// 		        data: {message: "hello!"},
+	// 		        dataType: "json"
+	// 		    });
+	// 		$(".cta span").text("Thank you!");
+	// 		$(".cta").removeClass("active").addClass("sent");
+	// 		$(".visible-input").addClass("fadeOut");
+	// 	}
+	// });
+
+	// new
+
+	$('form').on('submit', function(e) {
+	       e.preventDefault();
+	       
+	       //get the name field value
+	       // var name = $('#name').val();
+	       //get the name field value
+	       var email = $('#email').val();
+	       //get the comments
+	       var comments = $('#comments').val();
+	                   
+	       //pretend we don't need validation
+	       
+	       //send to formspree
+	       $.ajax({
+	           url:'https://formspree.io/raymondcamden@gmail.com',
+	           method:'POST',
+	           data:{
+	               // name:name,
+	               _replyto:email,
+	                email:email,
+	               comments:comments,
+	               _subject:'My Form Submission',
+	           },
+	           dataType:"json",
+	           success:function() {
+	               console.log('success'); 
+	               $(".cta span").text("Thank you!");
+           			$(".cta").removeClass("active").addClass("sent");
+           			$(".visible-input").addClass("fadeOut");
+	           }   
+
+	       });     
+	       
+	   });
 </script>
 
 </body>
